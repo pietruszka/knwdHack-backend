@@ -1,6 +1,6 @@
 'use strict';
 const mongoose = require('mongoose');
-const User = mongoose.model('UserVolunteer');
+const User = mongoose.model('UserOrganisation');
 const jwt = require('jsonwebtoken');
 const PassportLocalStrategy = require('passport-local');
 const config = require('./../../../data/config');
@@ -26,8 +26,18 @@ module.exports = new PassportLocalStrategy({
         if (err) { return done(err); }
 
         if (!user) {
-            const error = new Error('Nieprawidłowy email lub hasło.');
-            return done(error);
+            UserTemp.findOne({ email: userData.email}, (err, userTemp) => {
+                if(err) { return done(err);}
+                if(!userTemp){
+                    const error = new Error('Nieprawidłowy email lub hasło.');
+                    error.name = 'IncorrectCredentialsError';
+                    return done(error);
+                }else{
+                    const error = new Error('Konto nie zostało jeszcze aktywowane. Sprawdź swoją skrzynkę email.');
+                    error.name = 'IncorrectCredentialsError';
+                    return done(error);
+                }
+            });
         }else{
             // check if a hashed user's password is equal to a value saved in the database
             return user.comparePassword(userData.password, (passwordErr, isMatch) => {

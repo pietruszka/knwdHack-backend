@@ -50,5 +50,39 @@ const registerUser = (req, res, next) => {
         });
 };
 
+const loginUser = (req, res, next) => {
+    req.checkBody('email', 'Invalid postparam').notEmpty();
+    req.checkBody('password', 'Invalid postparam').notEmpty();
+    //TODO: complete checking above fields
+    req.getValidationResult()
+        .then((result)=>{
+            if(!result.isEmpty()){
+                res.status(400).json(result.array());
+            }else{
+                return passport.authenticate('local-loginVolunteer', (err, token, userData) => {
+                    if (err) {
+                        if (err.name === 'IncorrectCredentialsError') {
+                            return res.status(400).json({
+                                success: false,
+                                message: err.message
+                            });
+                        }
+                        console.log(err)
+                        return res.status(400).json({
+                            success: false,
+                            message: 'Nieprawidłowe parametry.'
+                        });
+                    }
 
-module.exports = {registerUser};
+                    return res.json({
+                        success: true,
+                        message: 'Zostałeś zalogowany.',
+                        token,
+                        user: userData
+                    });
+                })(req, res, next);
+            }
+        });
+};
+
+module.exports = {registerUser, loginUser};

@@ -15,6 +15,8 @@ const mongoose = require('mongoose');
 const routeMain = require('./api/routes');
 const localSignupStrategyVolunteer = require('./api/routes/userVolunteer/auth/registerUser');
 const localSignupStrategyOrganisation = require('./api/routes/userOrganisation/auth/registerUser');
+const localLoginStrategyVolunteer = require('./api/routes/userVolunteer/auth/loginUser');
+const localLoginStrategyOrganisation = require('./api/routes/userOrganisation/auth/loginUser');
 class Application {
     constructor(){
         this.app = new express();
@@ -45,6 +47,8 @@ class Application {
         this.app.use(passport.initialize());
         passport.use('local-signupVolunteer', localSignupStrategyVolunteer);
         passport.use('local-signupOrganisation', localSignupStrategyOrganisation);
+        passport.use('local-loginVolunteer', localLoginStrategyVolunteer);
+        passport.use('local-loginOrganisation', localLoginStrategyOrganisation);
         this.app.use('/', express.static(__dirname + '/build'));
     };
 
