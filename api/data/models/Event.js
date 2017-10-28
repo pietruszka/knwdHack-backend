@@ -4,12 +4,8 @@ const mongoose = require('mongoose');
 let EventModel = new mongoose.Schema({
     userId: String,
     title: String,
-    content: String,
-    date: {
-        type: Date,
-        default: new Date()
-    }
-
+    description: String,
+    date: String
 });
 
 module.exports = mongoose.model('Event',EventModel);

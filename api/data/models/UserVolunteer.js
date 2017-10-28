@@ -40,23 +40,23 @@ UserModel.methods.comparePassword = function comparePassword(password, callback)
 /**
  * Before saving new DB item, hash password field
  */
-UserModel.pre('save', function saveHook(next) {
-    const user = this;
-
-    if (!user.isModified('password')) return next();
-
-
-    return bcrypt.genSalt((saltError, salt) => {
-        if (saltError) { return next(saltError); }
-
-        return bcrypt.hash(user.password, salt, (hashError, hash) => {
-            if (hashError) { return next(hashError); }
-
-            user.password = hash;
-
-            return next();
-        });
-    });
-});
+// UserModel.pre('save', function saveHook(next) {
+//     const user = this;
+//
+//     if (!user.isModified('password')) return next();
+//
+//
+//     return bcrypt.genSalt((saltError, salt) => {
+//         if (saltError) { return next(saltError); }
+//
+//         return bcrypt.hash(user.password, salt, (hashError, hash) => {
+//             if (hashError) { return next(hashError); }
+//
+//             user.password = hash;
+//
+//             return next();
+//         });
+//     });
+// });
 
 module.exports = mongoose.model('UserVolunteer',UserModel);

@@ -9,4 +9,7 @@ mongoose.connect(config.DB_URL, { useMongoClient: true })
 
 //register mongoose models
 require('./models/UserVolunteer');
+require('./models/UserVolunteerTemp');
 require('./models/UserOrganisation');
+require('./models/UserOrganisationTemp');
+require('./models/Event');

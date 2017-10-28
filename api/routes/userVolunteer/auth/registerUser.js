@@ -1,6 +1,6 @@
 "use strict";
 const mongoose = require('mongoose');
-const User = mongoose.model('UserVolunteer');
+const User = mongoose.model('UserVolunteerTemp');
 const PassportLocalStrategy = require('passport-local').Strategy;
 
 
