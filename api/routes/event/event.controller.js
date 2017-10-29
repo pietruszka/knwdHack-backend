@@ -63,6 +63,9 @@ const add = (req, res) => {
     req.checkBody('title', 'Invalid postparam').notEmpty();
     req.checkBody('description', 'Invalid postparam').notEmpty();
     req.checkBody('date', 'Invalid postparam').notEmpty();
+    req.checkBody('hours', 'Invalid postparam').notEmpty();
+    req.checkBody('icon', 'Invalid postparam').notEmpty();
+    req.checkBody('capacity', 'Invalid postparam').notEmpty();
 
     req.getValidationResult()
         .then((result)=> {

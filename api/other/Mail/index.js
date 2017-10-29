@@ -56,7 +56,7 @@ class Mail {
     sendConfirmRegister(mail, userId, where){
         let content = {
             from: `"Aidly 👻" <${config.EMAIL_USERNAME}>`, // sender address
-            to: ((config.TEST_MODE) ? `piotr.pietruszka@o2.pl, konrisz96@gmail.com` : mail), // list of receivers //TODO: change to mail value
+            to: ((config.TEST_MODE) ? `piotr.pietruszka@o2.pl, konrisz96@gmail.com` : mail), // list of receivers
             subject: 'Aidly - potwierdzenie rejestracji', // Subject line
             text: 'Hello world ?', // plain text body
             html: require("./templates/mailConfirmation.template")(userId, where) // html body
@@ -68,7 +68,7 @@ class Mail {
     sendConfirmPasswordRecovery(mail, token){
         let content = {
             from: `"InStudy 👻" <${config.EMAIL_USERNAME}>`, // sender address
-            to: ((config.TEST_MODE) ? `piotr.pietruszka@o2.pl, konrisz96@gmail.com` : mail), // list of receivers //TODO: change to mail value
+            to: ((config.TEST_MODE) ? `piotr.pietruszka@o2.pl, konrisz96@gmail.com` : mail), // list of receivers
             subject: 'inStudy - odzyskiwanie hasła', // Subject line
             text: 'Hello world ?', // plain text body
             html: require("./templates/mailPasswordRecovery.template")(token) // html body

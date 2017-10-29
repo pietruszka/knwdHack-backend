@@ -58,7 +58,6 @@ const registerUser = (req, res, next) => {
 const loginUser = (req, res, next) => {
     req.checkBody('email', 'Invalid postparam').notEmpty();
     req.checkBody('password', 'Invalid postparam').notEmpty();
-    //TODO: complete checking above fields
     req.getValidationResult()
         .then((result)=>{
             if(!result.isEmpty()){
@@ -92,7 +91,6 @@ const loginUser = (req, res, next) => {
 
 const mailConfirmation = (req, res, next) => {
     req.checkParams('id', 'Invalid postparam').notEmpty();
-    //TODO: complete checking above fields
     req.getValidationResult()
         .then((result)=>{
             if(!result.isEmpty()){
@@ -127,7 +125,6 @@ const mailConfirmation = (req, res, next) => {
 
 const changeUser = (req, res, next) => {
     req.checkBody('newContent', 'Invalid postparam').notEmpty();
-    //TODO: complete checking above fields
     req.getValidationResult()
         .then((result)=>{
             if(!result.isEmpty()){
