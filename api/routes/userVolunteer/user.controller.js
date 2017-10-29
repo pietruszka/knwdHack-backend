@@ -56,8 +56,8 @@ const registerUser = (req, res, next) => {
 };
 
 const loginUser = (req, res, next) => {
-    req.checkBody('email', 'Invalid postparam').notEmpty();
-    req.checkBody('password', 'Invalid postparam').notEmpty();
+    req.checkBody('email', 'Invalid postparam').optional();
+    req.checkBody('password', 'Invalid postparam').optional();
     req.getValidationResult()
         .then((result)=>{
             if(!result.isEmpty()){
