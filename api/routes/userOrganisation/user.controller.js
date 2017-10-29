@@ -20,7 +20,7 @@ const registerUser = (req, res, next) => {
             console.log('[2]')
 
             if(!result.isEmpty()){
-                console.log('[3]')
+                console.log('[3]',result.array())
 
                 res.status(400).json(result.array());
             }else{
