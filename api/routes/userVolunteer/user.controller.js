@@ -8,12 +8,12 @@ const registerUser = (req, res, next) => {
     req.checkBody('email', 'Invalid postparam').notEmpty();
     req.checkBody('email', 'Email should be email').isEmail();
     req.checkBody('password', 'Invalid postparam').notEmpty();
-    req.checkBody('password', 'Invalid password length').len(6,40);
-    req.checkBody('name', 'Invalid postparam').notEmpty();
-    req.checkBody('surname', 'Invalid postparam').notEmpty();
+    req.checkBody('firstname', 'Invalid postparam').notEmpty();
+    req.checkBody('lastname', 'Invalid postparam').notEmpty();
     req.checkBody('phone', 'Invalid postparam').notEmpty();
     req.checkBody('address', 'Invalid postparam').notEmpty();
     req.checkBody('zipcode', 'Invalid postparam').notEmpty();
+    req.checkBody('city', 'Invalid postparam').notEmpty();
 
     req.getValidationResult()
         .then((result)=>{
@@ -112,7 +112,7 @@ const mailConfirmation = (req, res, next) => {
                         }).save((err, newUser)=>{
                             UserTemp.findByIdAndRemove(req.params.id,(err)=>{
                                 if(err) res.status(400).json({success:false, message: "Remove temp failed."})
-                                res.status(200).json({success: true})
+                                res.redirect('/');
                             });
                         });
                     }else{

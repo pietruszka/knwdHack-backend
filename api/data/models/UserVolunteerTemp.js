@@ -16,7 +16,8 @@ let UserModel = new mongoose.Schema({
     lastname: String,
     zipcode: String,
     phone: String,
-    address: String
+    address: String,
+    score: Number
 });
 
 // UserModel.plugin(searchPlugin, {

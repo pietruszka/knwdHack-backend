@@ -7,6 +7,5 @@ router.post('/register', registerUser);
 router.post('/login', loginUser);
 router.get('/confirmmail/:id', mailConfirmation);
 
-
 module.exports = router;
 
