@@ -1,4 +1,4 @@
-# knwdHack-backend
+# Aidly-backend
 
 Aidly - aplication's backend implementation.
 
