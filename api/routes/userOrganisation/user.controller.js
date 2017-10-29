@@ -4,16 +4,16 @@ const User = mongoose.model('UserOrganisation');
 const UserTemp = mongoose.model('UserOrganisationTemp');
 
 const registerUser = (req, res, next) => {
-    // req.checkBody('email', 'Invalid postparam').notEmpty();
-    // req.checkBody('password', 'Invalid postparam').notEmpty();
-    // req.checkBody('password2', 'Invalid postparam').notEmpty();
-    // req.checkBody('name', 'Invalid postparam').notEmpty();
-    // req.checkBody('personname', 'Invalid postparam').notEmpty();
-    // req.checkBody('phone', 'Invalid postparam').notEmpty();
-    // req.checkBody('address', 'Invalid postparam').notEmpty();
-    // req.checkBody('zipcode', 'Invalid postparam').notEmpty();
-    // req.checkBody('city', 'Invalid postparam').notEmpty();
-    // req.checkBody('nip', 'Invalid postparam').notEmpty();
+    req.checkBody('email', 'Invalid postparam').notEmpty();
+    req.checkBody('password', 'Invalid postparam').notEmpty();
+    req.checkBody('password2', 'Invalid postparam').notEmpty();
+    req.checkBody('name', 'Invalid postparam').notEmpty();
+    req.checkBody('personname', 'Invalid postparam').notEmpty();
+    req.checkBody('phone', 'Invalid postparam').notEmpty();
+    req.checkBody('address', 'Invalid postparam').notEmpty();
+    req.checkBody('zipcode', 'Invalid postparam').notEmpty();
+    req.checkBody('city', 'Invalid postparam').notEmpty();
+    req.checkBody('nip', 'Invalid postparam').notEmpty();
     console.log('[1]')
     req.getValidationResult()
         .then((result)=>{

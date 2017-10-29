@@ -28,7 +28,6 @@ class Application {
     middleware(){
         this.app.use(cors());
         this.app.use(compression());
-        this.app.use(bodyParser.urlencoded({extended: false}));
         this.app.use(bodyParser.json());
         this.app.use(expressValidator({
             errorFormatter: function(param, msg, value) {
@@ -56,17 +55,17 @@ class Application {
 
     routes(){
         //main route
-        var whitelist = ['http://localhost:8080']
-        var corsOptions = {
-            origin: function (origin, callback) {
-                if (whitelist.indexOf(origin) !== -1) {
-                    callback(null, true)
-                } else {
-                    callback(new Error('Not allowed by CORS'))
-                }
-            }
-        }
-        this.app.use('/api',cors(corsOptions), routeMain)
+        // var whitelist = ['http://localhost:8080']
+        // var corsOptions = {
+        //     origin: function (origin, callback) {
+        //         if (whitelist.indexOf(origin) !== -1) {
+        //             callback(null, true)
+        //         } else {
+        //             callback(new Error('Not allowed by CORS'))
+        //         }
+        //     }
+        // }
+        this.app.use('/api'/*,cors(corsOptions)*/, routeMain)
     };
 
 
