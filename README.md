@@ -1,6 +1,6 @@
 # Aidly-backend
 
-Aidly - aplication's backend implementation.
+Aplication's backend implementation.
 
 To run type in terminal: </br>
 **npm install** </br>
