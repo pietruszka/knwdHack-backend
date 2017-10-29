@@ -41,6 +41,24 @@ const getAll = (req, res) => {
         });
 };
 
+const getAllFromOrganisation = (req, res) => {
+    req.checkParams('id', 'Invalid postparam').notEmpty();
+
+    req.getValidationResult()
+        .then((result)=> {
+            if (!result.isEmpty()) {
+                res.status(400).json(result.array());
+            } else {
+                Event.find({}, (err, events) => {
+                    if(err){
+                        res.status(400).json({success: false, message: "Failed to get events"});
+                    }
+                    res.status(200).json({success: true, data: events});
+                })
+            }
+        });
+};
+
 const add = (req, res) => {
     req.checkBody('title', 'Invalid postparam').notEmpty();
     req.checkBody('description', 'Invalid postparam').notEmpty();
@@ -84,7 +102,9 @@ const change = (req, res) => {
                     title: {$set: req.body.title},
                     description: {$set: req.body.description},
                     date: {$set: req.body.date},
-                    icon: {$set: req.body.icon}
+                    hours: {$set: req.body.hours},
+                    icon: {$set: req.body.icon},
+                    capacity: {$set: req.body.capacity}
                 },(err)=>{
                     if(err){
                         res.status(400).json({success: false, message: "Change event failed."});
@@ -115,5 +135,5 @@ const deleteEvent = (req, res) => {
 };
 
 module.exports = {
-    get, getAll, add, change, deleteEvent
+    get, getAll, add, change, deleteEvent, getAllFromOrganisation
 };

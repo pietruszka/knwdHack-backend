@@ -6,7 +6,9 @@ let EventModel = new mongoose.Schema({
     title: String,
     description: String,
     date: String,
-    icon: String
+    hours: Number,
+    icon: String,
+    capacity: Number
 });
 
 module.exports = mongoose.model('Event',EventModel);
