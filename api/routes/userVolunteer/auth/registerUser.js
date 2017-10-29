@@ -25,7 +25,13 @@ module.exports = new PassportLocalStrategy({
         }else{
             _requestData = {
                 email: email.trim(),
-                password: password.trim()
+                password: password.trim(),
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                zipcode: req.body.zipcode,
+                phone: req.body.phone,
+                address: req.body.address,
+                score: 0
             }; //tutaj dorobić!
 
 

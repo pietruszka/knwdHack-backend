@@ -17,16 +17,9 @@ const registerUser = (req, res, next) => {
     console.log('[1]')
     req.getValidationResult()
         .then((result)=>{
-            console.log('[2]')
-
             if(!result.isEmpty()){
-                console.log('[3]',req.body, result.array())
-
                 res.status(400).json(result.array());
             }else{
-
-                console.log('[4]')
-
                 return passport.authenticate('local-signupOrganisation', (err) => {
                     if (err) {
                         console.log(err)
@@ -119,7 +112,7 @@ const mailConfirmation = (req, res, next) => {
                         }).save((err, newUser)=>{
                             UserTemp.findByIdAndRemove(req.params.id,(err)=>{
                                 if(err) res.status(400).json({success:false, message: "Remove temp failed."})
-                                res.redirect('/');
+                                res.redirect('http://localhost:3000');
                             });
                         });
                     }else{
