@@ -12,9 +12,11 @@ let UserModel = new mongoose.Schema({
         type: String,
         required: true
     },
-    firstname: String,
-    lastname: String,
+    name: String,
+    personname: String,
     zipcode: String,
+    city: String,
+    nip: String,
     phone: String,
     address: String
 });
