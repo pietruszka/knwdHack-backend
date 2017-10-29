@@ -5,9 +5,7 @@ const UserTemp = mongoose.model('UserOrganisationTemp');
 
 const registerUser = (req, res, next) => {
     req.checkBody('email', 'Invalid postparam').notEmpty();
-    req.checkBody('email', 'Email should be email').isEmail();
     req.checkBody('password', 'Invalid postparam').notEmpty();
-    req.checkBody('password', 'Invalid password length').len(6,40);
     req.checkBody('name', 'Invalid postparam').notEmpty();
     req.checkBody('personname', 'Invalid postparam').notEmpty();
     req.checkBody('phone', 'Invalid postparam').notEmpty();
@@ -15,12 +13,19 @@ const registerUser = (req, res, next) => {
     req.checkBody('zipcode', 'Invalid postparam').notEmpty();
     req.checkBody('city', 'Invalid postparam').notEmpty();
     req.checkBody('nip', 'Invalid postparam').notEmpty();
-
+    console.log('[1]')
     req.getValidationResult()
         .then((result)=>{
+            console.log('[2]')
+
             if(!result.isEmpty()){
+                console.log('[3]')
+
                 res.status(400).json(result.array());
             }else{
+
+                console.log('[4]')
+
                 return passport.authenticate('local-signupOrganisation', (err) => {
                     if (err) {
                         console.log(err)
