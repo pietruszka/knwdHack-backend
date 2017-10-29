@@ -33,7 +33,7 @@ module.exports = new PassportLocalStrategy({
                 address: req.body.address,
                 city: req.body.city,
                 score: 0
-            }; 
+            };
             const newUser = new User(_requestData);
             newUser.save((err,userr)=>{
                 if(err) return done(err);

@@ -125,4 +125,28 @@ const mailConfirmation = (req, res, next) => {
         });
 };
 
-module.exports = {registerUser, loginUser, mailConfirmation};
+const changeUser = (req, res, next) => {
+    req.checkBody('newContent', 'Invalid postparam').notEmpty();
+    //TODO: complete checking above fields
+    req.getValidationResult()
+        .then((result)=>{
+            if(!result.isEmpty()){
+                res.status(400).json(result.array());
+            }else{
+                if(req.userId){
+                    User.findByIdAndUpdate(req.userId, {
+                        firstname: {$set: req.body.newContent.firstname},
+                        lastname: {$set: req.body.newContent.lastname},
+                        zipcode: {$set: req.body.newContent.zipcode},
+                        phone: {$set: req.body.newContent.phone},
+                        city: {$set: req.body.newContent.city}
+                    }, (err, user)=>{
+                        if(err) res.status(400).json({success: false, message: "Failed to change user data."});
+                        res.status(200).json({success: true});
+                    })
+                }
+            }
+        });
+};
+
+module.exports = {registerUser, loginUser, mailConfirmation, changeUser};

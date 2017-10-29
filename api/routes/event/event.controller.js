@@ -56,7 +56,8 @@ const add = (req, res) => {
                         userId: req.userId,
                         title: req.body.title,
                         description: req.body.description,
-                        date: req.body.date
+                        date: req.body.date,
+                        icon: req.body.icon
                     }).save(err => {
                         if(!err){
                           res.status(200).json({success: true});
@@ -82,7 +83,8 @@ const change = (req, res) => {
                 Event.findByIdAndUpdate(req.body.eventId, {
                     title: {$set: req.body.title},
                     description: {$set: req.body.description},
-                    date: {$set: req.body.date}
+                    date: {$set: req.body.date},
+                    icon: {$set: req.body.icon}
                 },(err)=>{
                     if(err){
                         res.status(400).json({success: false, message: "Change event failed."});
