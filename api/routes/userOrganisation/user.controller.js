@@ -9,10 +9,12 @@ const registerUser = (req, res, next) => {
     req.checkBody('password', 'Invalid postparam').notEmpty();
     req.checkBody('password', 'Invalid password length').len(6,40);
     req.checkBody('name', 'Invalid postparam').notEmpty();
-    req.checkBody('surname', 'Invalid postparam').notEmpty();
+    req.checkBody('personname', 'Invalid postparam').notEmpty();
     req.checkBody('phone', 'Invalid postparam').notEmpty();
     req.checkBody('address', 'Invalid postparam').notEmpty();
     req.checkBody('zipcode', 'Invalid postparam').notEmpty();
+    req.checkBody('city', 'Invalid postparam').notEmpty();
+    req.checkBody('nip', 'Invalid postparam').notEmpty();
 
     req.getValidationResult()
         .then((result)=>{
