@@ -53,13 +53,13 @@ class Mail {
      * @param content
      * @returns {Promise}
      */
-    sendConfirmRegister(mail, userId){
+    sendConfirmRegister(mail, userId, where){
         let content = {
             from: `"Aidly 👻" <${config.EMAIL_USERNAME}>`, // sender address
             to: ((config.TEST_MODE) ? `piotr.pietruszka@o2.pl, konrisz96@gmail.com` : mail), // list of receivers //TODO: change to mail value
             subject: 'Aidly - potwierdzenie rejestracji', // Subject line
             text: 'Hello world ?', // plain text body
-            html: require("./templates/mailConfirmation.template")(userId) // html body
+            html: require("./templates/mailConfirmation.template")(userId, where) // html body
         };
 
         return _sendMail(content, this.transporter);

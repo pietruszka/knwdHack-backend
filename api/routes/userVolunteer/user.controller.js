@@ -1,4 +1,9 @@
 const passport = require('passport');
+const mongoose = require('mongoose');
+
+const User = mongoose.model('UserVolunteer');
+const UserTemp = mongoose.model('UserVolunteerTemp');
+
 const registerUser = (req, res, next) => {
     req.checkBody('email', 'Invalid postparam').notEmpty();
     req.checkBody('email', 'Email should be email').isEmail();
@@ -85,4 +90,37 @@ const loginUser = (req, res, next) => {
         });
 };
 
-module.exports = {registerUser, loginUser};
+const mailConfirmation = (req, res, next) => {
+    req.checkParams('id', 'Invalid postparam').notEmpty();
+    //TODO: complete checking above fields
+    req.getValidationResult()
+        .then((result)=>{
+            if(!result.isEmpty()){
+                res.status(400).json(result.array());
+            }else{
+                UserTemp.findById(req.params.id, (err, user)=>{
+                    if(err) res.status(400).json({success:false, message: "Wrong mail."});
+                    if(user) {
+                        new User({
+                            email: user.email,
+                            password: user.password,
+                            firstname: user.firstname,
+                            lastname: user.lastname,
+                            zipcode: user.zipcode,
+                            phone: user.phone,
+                            address: user.address
+                        }).save((err, newUser)=>{
+                            UserTemp.findByIdAndRemove(req.params.id,(err)=>{
+                                if(err) res.status(400).json({success:false, message: "Remove temp failed."})
+                                res.status(200).json({success: true})
+                            });
+                        });
+                    }else{
+                        res.status(400).json({success: false, message: "Wrong mail."})
+                    }
+                })
+            }
+        });
+};
+
+module.exports = {registerUser, loginUser, mailConfirmation};

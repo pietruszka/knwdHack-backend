@@ -31,7 +31,7 @@ module.exports = new PassportLocalStrategy({
             const newUser = new User(_requestData);
             newUser.save((err,userr)=>{
                 if(err) return done(err);
-                new Mail().sendConfirmRegister(newUser.email, userr._id)
+                new Mail().sendConfirmRegister(newUser.email, userr._id, "userOrganisation")
                     .then(success=>done(null))
                     .catch(fail=>done(fail));
             });

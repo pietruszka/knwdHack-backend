@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('UserVolunteerTemp');
 const PassportLocalStrategy = require('passport-local').Strategy;
+const Mail = require('./../../../other/Mail');
 
 
 module.exports = new PassportLocalStrategy({
@@ -31,7 +32,9 @@ module.exports = new PassportLocalStrategy({
             const newUser = new User(_requestData);
             newUser.save((err,userr)=>{
                 if(err) return done(err);
-                return done(null);
+                new Mail().sendConfirmRegister(newUser.email, userr._id,"userVolunteer")
+                    .then(success=>done(null))
+                    .catch(fail=>done(fail));
 
             });
         }
