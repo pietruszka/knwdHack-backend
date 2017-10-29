@@ -6,6 +6,7 @@ const UserTemp = mongoose.model('UserOrganisationTemp');
 const registerUser = (req, res, next) => {
     req.checkBody('email', 'Invalid postparam').notEmpty();
     req.checkBody('password', 'Invalid postparam').notEmpty();
+    req.checkBody('password2', 'Invalid postparam').notEmpty();
     req.checkBody('name', 'Invalid postparam').notEmpty();
     req.checkBody('personname', 'Invalid postparam').notEmpty();
     req.checkBody('phone', 'Invalid postparam').notEmpty();
