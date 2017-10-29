@@ -2,10 +2,10 @@
 
 Aidly - aplication's backend implementation.
 
-To run type in terminal: 
-**npm install** 
-Than start server by command:
-**npm start**
+To run type in terminal: </br>
+**npm install** </br>
+than start server by command:</br>
+**npm start**</br>
 
-## Used technologies:
+## Used technologies:</br>
 Node.js, Express.js, Passport.js, MongoDB, mongoose
