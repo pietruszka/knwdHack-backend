@@ -31,10 +31,9 @@ module.exports = new PassportLocalStrategy({
                 zipcode: req.body.zipcode,
                 phone: req.body.phone,
                 address: req.body.address,
+                city: req.body.city,
                 score: 0
-            }; //tutaj dorobić!
-
-
+            }; 
             const newUser = new User(_requestData);
             newUser.save((err,userr)=>{
                 if(err) return done(err);

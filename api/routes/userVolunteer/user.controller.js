@@ -108,11 +108,13 @@ const mailConfirmation = (req, res, next) => {
                             lastname: user.lastname,
                             zipcode: user.zipcode,
                             phone: user.phone,
-                            address: user.address
+                            address: user.address,
+                            city: user.city,
+                            score: 0
                         }).save((err, newUser)=>{
                             UserTemp.findByIdAndRemove(req.params.id,(err)=>{
                                 if(err) res.status(400).json({success:false, message: "Remove temp failed."})
-                                res.redirect('http://localhost:3000');
+                                res.redirect('http://localhost:8080');
                             });
                         });
                     }else{
